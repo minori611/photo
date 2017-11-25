@@ -4,6 +4,7 @@
 //
 //  Created by Minori_n on 2017/09/09.
 //  Copyright © 2017年 那須美律. All rights reserved.
+//まも助けてくださいお願いします！
 //
 
 import UIKit
