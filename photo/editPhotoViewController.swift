@@ -9,7 +9,7 @@
 import UIKit
 
 class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     @IBOutlet var cameraImageView: UIImageView!
     
     var originalImage: UIImage!
@@ -24,7 +24,6 @@ class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate
     }
 
     func openAlbum() {
-        print("a")
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
@@ -61,7 +60,7 @@ class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate
         changeFilter()
     }
     
-    func changeFilter() {
+    @IBAction func changeFilter() {
         let filterImage: CIImage = CIImage(image: originalImage)!
         
         //filter
@@ -73,7 +72,7 @@ class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate
         
         //contrast
         filter.setValue(1.0, forKey: "inputContrast")
-        
+
         let ctx = CIContext(options: nil)
         let cgImage = ctx.createCGImage(filter.outputImage!, from: filter.outputImage!.extent)
         cameraImageView.image = UIImage(cgImage: cgImage!)
