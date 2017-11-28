@@ -4,18 +4,16 @@
 //
 //  Created by Minori_n on 2017/09/09.
 //  Copyright © 2017年 那須美律. All rights reserved.
-//まも助けてくださいお願いします！
 //
 
 import UIKit
 
 class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet var cameraImageView: UIImageView!
-    
+    @IBOutlet var imageView: UIImageView!
+   
     var originalImage: UIImage!
     var filter: CIFilter!
-    var slider = 0.0
     var brightness = 0.0
     var contrast = 0.0
     
@@ -23,45 +21,61 @@ class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
         openAlbum()
     }
-
+    
+    func addSlider() {
+        let slider = UISlider(frame: CGRect(x:0, y:0, width:300, height:30))
+        slider.layer.position = CGPoint(x:self.view.frame.midX, y:600)
+        slider.layer.cornerRadius = 10.0
+        slider.layer.shadowOpacity = 0.5
+        slider.layer.masksToBounds = false
+        slider.tintColor = UIColor.black
+        slider.minimumValue = 0
+        slider.maximumValue = 1
+        slider.setValue(0.0, animated: true)
+        slider.addTarget(self, action: #selector(self.changeBrightness(sender:)), for: .valueChanged)
+        self.view.addSubview(slider)
+    }
+    
     func openAlbum() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
             picker.delegate = self
-            
             picker.allowsEditing = true
             present(picker, animated: true, completion: nil)
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo Info: [String : Any]) {
-        cameraImageView.image = Info[UIImagePickerControllerEditedImage] as? UIImage
+        imageView.image = Info[UIImagePickerControllerEditedImage] as? UIImage
         
-        originalImage = cameraImageView.image
+        originalImage = imageView.image
         
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func sliderchanged(_ sender: UISlider) {
-        
-        slider = Double(sender.value)
-        print(sender.value)
+    @IBAction func brightnessButton() {
+        addSlider()
     }
     
-    @IBAction func changeBrightness() {
+    func changeBrightness(sender: UISlider) {
+        brightness = Double(sender.value)
+        changeFilter()
         
-        //brightness = Double(slider)
+    }
+    
+    @IBAction func contrastButton() {
+        addSlider()
+    }
+    
+    func changeContrast(sender: UISlider) {
+        contrast = Double(sender.value)
         changeFilter()
     }
     
-    @IBAction func changeContrast() {
-        
-        contrast = Double(slider)
-        changeFilter()
-    }
     
-    @IBAction func changeFilter() {
+    
+    func changeFilter() {
         let filterImage: CIImage = CIImage(image: originalImage)!
         
         //filter
@@ -69,16 +83,20 @@ class editPhotoViewController: UIViewController, UIImagePickerControllerDelegate
         filter.setValue(filterImage, forKey: kCIInputImageKey)
         
         //brightness
-        filter.setValue(1.0, forKey: "inputBrightness")
+        filter.setValue(brightness, forKey: "inputBrightness")
         
         //contrast
         filter.setValue(1.0, forKey: "inputContrast")
 
         let ctx = CIContext(options: nil)
         let cgImage = ctx.createCGImage(filter.outputImage!, from: filter.outputImage!.extent)
-        cameraImageView.image = UIImage(cgImage: cgImage!)
+        imageView.image = UIImage(cgImage: cgImage!)
     }
     
+    @IBAction func savePhoto() {
+        UIImageWriteToSavedPhotosAlbum(imageView.image!, nil, nil, nil)
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

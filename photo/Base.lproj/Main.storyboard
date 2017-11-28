@@ -59,27 +59,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bWz-yi-KS5">
-                                <rect key="frame" x="20" y="555" width="335" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="sliderchanged:" destination="JB9-g5-8qG" eventType="touchUpInside" id="5lE-bR-X9l"/>
-                                </connections>
-                            </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuG-Oh-w7s">
-                                <rect key="frame" x="16" y="617" width="84" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Brightness"/>
-                                <connections>
-                                    <action selector="changeBrightness" destination="JB9-g5-8qG" eventType="touchUpInside" id="6e1-wV-r4S"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzC-eQ-idE">
                                 <rect key="frame" x="108" y="617" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Contrast"/>
                                 <connections>
                                     <action selector="changeContrast" destination="JB9-g5-8qG" eventType="touchUpInside" id="ofd-Wp-wNp"/>
+                                    <action selector="contrastButton" destination="JB9-g5-8qG" eventType="touchUpInside" id="KLA-iD-WBg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZV-qC-oVD">
@@ -88,7 +74,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYy-IB-pbd">
-                                <rect key="frame" x="0.0" y="121" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-x1-Zu1">
@@ -103,12 +89,10 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Cancel"/>
                                             </button>
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="modal" id="GqJ-gR-SZD"/>
-                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="Bum-Mg-bPT">
                                             <connections>
+                                                <action selector="savePhoto" destination="JB9-g5-8qG" id="eRO-xM-dnO"/>
                                                 <segue destination="aSZ-us-Qca" kind="modal" id="a4D-BF-ovi"/>
                                             </connections>
                                         </barButtonItem>
@@ -122,11 +106,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuG-Oh-w7s">
+                                <rect key="frame" x="0.0" y="617" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Brightness"/>
+                                <connections>
+                                    <action selector="brightnessButton" destination="JB9-g5-8qG" eventType="touchUpInside" id="obZ-oc-eFa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cameraImageView" destination="tYy-IB-pbd" id="s07-aJ-jAM"/>
+                        <outlet property="imageView" destination="tYy-IB-pbd" id="biL-vU-K2R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FEB-xJ-GRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -136,7 +128,7 @@
         <!--Title-->
         <scene sceneID="2Zr-wF-oy4">
             <objects>
-                <viewController id="aSZ-us-Qca" sceneMemberID="viewController">
+                <viewController id="aSZ-us-Qca" customClass="sharePhotoViewController" customModule="photo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JTa-YJ-JuO"/>
                         <viewControllerLayoutGuide type="bottom" id="IBA-Sq-cQ1"/>
@@ -156,9 +148,6 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Cancel"/>
                                             </button>
-                                            <connections>
-                                                <segue destination="JB9-g5-8qG" kind="modal" id="AQj-0N-8fa"/>
-                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="2ry-3V-3Ti"/>
                                     </navigationItem>
@@ -175,14 +164,14 @@
                                 <state key="normal" title="Instagram"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar0-ZW-urq">
-                                <rect key="frame" x="72" y="346" width="46" height="30"/>
+                                <rect key="frame" x="71" y="346" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Twitter"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhE-aP-AFb">
-                                <rect key="frame" x="237" y="346" width="46" height="30"/>
+                                <rect key="frame" x="227" y="346" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Facebook"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -194,8 +183,4 @@
             <point key="canvasLocation" x="1878" y="134"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="a4D-BF-ovi"/>
-        <segue reference="AQj-0N-8fa"/>
-    </inferredMetricsTieBreakers>
 </document>

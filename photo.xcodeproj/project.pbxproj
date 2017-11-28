@@ -14,6 +14,7 @@
 		3F34362A1F10E75F004CE6DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3436281F10E75F004CE6DB /* LaunchScreen.storyboard */; };
 		3F3436351F10E75F004CE6DB /* photoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3436341F10E75F004CE6DB /* photoTests.swift */; };
 		3F3436401F10E75F004CE6DB /* photoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34363F1F10E75F004CE6DB /* photoUITests.swift */; };
+		3F7846A61FCAC21000202018 /* sharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7846A51FCAC21000202018 /* sharePhotoViewController.swift */; };
 		3FCD7BFB1F636B3C0063E608 /* editPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD7BFA1F636B3B0063E608 /* editPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		3F34363B1F10E75F004CE6DB /* photoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F34363F1F10E75F004CE6DB /* photoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photoUITests.swift; sourceTree = "<group>"; };
 		3F3436411F10E75F004CE6DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F7846A51FCAC21000202018 /* sharePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharePhotoViewController.swift; sourceTree = "<group>"; };
 		3FCD7BFA1F636B3B0063E608 /* editPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 				3F3436281F10E75F004CE6DB /* LaunchScreen.storyboard */,
 				3F34362B1F10E75F004CE6DB /* Info.plist */,
 				3FCD7BFA1F636B3B0063E608 /* editPhotoViewController.swift */,
+				3F7846A51FCAC21000202018 /* sharePhotoViewController.swift */,
 			);
 			path = photo;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				3FCD7BFB1F636B3C0063E608 /* editPhotoViewController.swift in Sources */,
 				3F3436221F10E75F004CE6DB /* ViewController.swift in Sources */,
+				3F7846A61FCAC21000202018 /* sharePhotoViewController.swift in Sources */,
 				3F3436201F10E75F004CE6DB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
