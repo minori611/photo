@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import Accounts
 
 class sharePhotoViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    var image: UIImage? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.imageView.image = self.image
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func postTwitter() {
+        let shareImage = imageView.image!
+        
     }
     
     override func didReceiveMemoryWarning() {
